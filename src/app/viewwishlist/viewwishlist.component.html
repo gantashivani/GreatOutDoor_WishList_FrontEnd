@@ -1,0 +1,23 @@
+<div class="container">
+    <table class="table" >
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Catogery</th>
+                <th>Product Name</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let  user of user">
+            <td> {{user.productId}} </td>
+            <td> {{user.productCatogery}} </td>
+            <td> {{user.productName}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Shop to add more products............!!!!!!</h4>
+
+    <button class="btn btn-primary" (click)="toPrevious()">Back</button>
+</div>
+
