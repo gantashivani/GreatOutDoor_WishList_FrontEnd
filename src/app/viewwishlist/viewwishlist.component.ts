@@ -12,12 +12,13 @@ export class ViewwishlistComponent implements OnInit {
   constructor(private service:WishlistServiceService,private routing:ActivatedRoute,private router: Router) {}
 
   user:UserDTO;
-  userId:any;
+  userId:number;
   
   ngOnInit(): void 
  {
-  let  userId=this.routing.snapshot.paramMap.get('userId');
-   this.service.viewproduct(userId).subscribe(
+   let userId=this.routing.snapshot.paramMap.get('userId');
+   let userIdnum=Number(userId)
+   this.service.viewproduct(userIdnum).subscribe(
    response =>this.handleSuccessfulResponse(response),
   );
 }

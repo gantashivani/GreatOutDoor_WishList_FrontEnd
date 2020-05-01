@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {  WishlistServiceService, Products } from '../wishlist-service.service';
-import { Router } from '@angular/router';
+import {  WishlistServiceService, Products, ProductsUser } from '../wishlist-service.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listproduct',
@@ -9,20 +9,28 @@ import { Router } from '@angular/router';
 })
 export class ListproductComponent implements OnInit {
 
-  product:Products[];
-
- constructor(private service:WishlistServiceService,private router: Router) {}
+  product:Array<Products>;
+  products:Products;
+ constructor(private service:WishlistServiceService,private routing:ActivatedRoute,private router: Router) {}
 
  
  ngOnInit(): void 
  {
-   //let id= this.router.snapshot.paramMap.get('')
    this.service.getproducts().subscribe(
    response =>this.handleSuccessfulResponse(response),
   );
 }
-  onAdd(product:Products){
-    this.service.onAddToWishList(product); 
+  onAdd(products:Products){
+    let user=this.routing.snapshot.paramMap.get('userId');
+    let userId=Number(user);
+    console.log(products);
+    let pass=this.routing.snapshot.paramMap.get('password');
+    let userName=this.routing.snapshot.paramMap.get('userName');
+    this.product.push.apply({productId:'products.productId',productCatogery:'products.productCatogery',productName:'products.productName'});
+    let data = new ProductsUser(userId,pass,userName,this.product);
+    console.log(data);
+    this.service.onAddToWishList(data).subscribe((result)=>{
+  alert(result)}); 
   }
 
   handleSuccessfulResponse(response)
