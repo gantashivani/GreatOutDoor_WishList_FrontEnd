@@ -1,4 +1,5 @@
 <div class="container">
+    <table class="table" >
         <thead>
             <tr>
                 <th>Product Id</th>
@@ -9,12 +10,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor = "let product of products">
+            <tr *ngFor = "let product of product">
             <td> {{product.productId}} </td>
             <td> {{product.productCatogery}} </td>
             <td> {{product.productName}} </td>
             <td> 
-                <button type="button" class="btn btn-large btn-block btn-primary" (click) = onAdd(product)>AddToWishList</button>
+                <button type="button" class="btn btn-large btn-block btn-primary" (click) = onAdd(product)> 
+                    <span class="glyphicon glyphicon-heart"></span>
+                </button>
             </td>
         </tbody> 
+        </table>
 </div>

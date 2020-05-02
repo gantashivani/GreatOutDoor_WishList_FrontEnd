@@ -7,11 +7,12 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './listproduct.component.html',
   styleUrls: ['./listproduct.component.css']
 })
-export class ListproductComponent implements OnInit {
-
-  product:Array<Products>;
-  products:Products;
- constructor(private service:WishlistServiceService,private routing:ActivatedRoute,private router: Router) {}
+export class ListproductComponent implements OnInit{
+  
+  product:Products[];
+  data:ProductsUser =new ProductsUser(0,'','',[]);
+  listofproducts:Products = new Products(0,'','');
+  constructor(private service:WishlistServiceService,private routing:ActivatedRoute,private router: Router) {}
 
  
  ngOnInit(): void 
@@ -21,17 +22,29 @@ export class ListproductComponent implements OnInit {
   );
 }
   onAdd(products:Products){
+    //retriving userdata from login page 
     let user=this.routing.snapshot.paramMap.get('userId');
-    let userId=Number(user);
-    console.log(products);
-    let pass=this.routing.snapshot.paramMap.get('password');
-    let userName=this.routing.snapshot.paramMap.get('userName');
-    this.product.push.apply({productId:'products.productId',productCatogery:'products.productCatogery',productName:'products.productName'});
-    let data = new ProductsUser(userId,pass,userName,this.product);
-    console.log(data);
-    this.service.onAddToWishList(data).subscribe((result)=>{
-  alert(result)}); 
-  }
+    
+    this.data.userId=Number(user); /** snapshot returns string */
+    this.data.password=this.routing.snapshot.paramMap.get('password');
+    this.data.userName=this.routing.snapshot.paramMap.get('userName');
+    let productid=Math.random()
+    this.data.product=[
+                {productId : productid,
+                        productCatogery:products.productCatogery,
+                        productName:products.productName
+                        }];
+
+    //this.data = new ProductsUser(userId,pass,userName,this.listofproducts);
+    console.log(this.data);
+    this.service.onAddToWishList(this.data).subscribe(
+      (result)=>{
+        if(result!=null)
+          alert("Added sucessfully");
+        else 
+          alert("Add failed");
+                }); 
+      }
 
   handleSuccessfulResponse(response)
   {

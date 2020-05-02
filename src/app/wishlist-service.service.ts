@@ -23,13 +23,14 @@ export class WishlistServiceService {
   
   public validateUser(userId) {
     console.log(userId)
+    this.user=userId
     return this.http.get<UserDTO>("http://localhost:2001/Login/ValidateUser/"+userId,{responseType:'json'});
   }
 
-  public viewproduct(userId:number) {
+  public viewproduct() {
     console.log("inservice");
-    console.log(userId);
-    return this.http.get<UserDTO>("http://localhost:1004/WishList/ViewWishList/"+userId,{responseType:'json'});
+    console.log(this.user);
+    return this.http.get<UserDTO>("http://localhost:1004/WishList/ViewWishList/"+3,{responseType:'json'});
   }
   
 }
@@ -67,9 +68,9 @@ export class ProductsUser
   userId:number;
   password:string;
   userName:string;
-  product:Array<Products>;
+  product:Products[];
 
-  constructor(userId:number,password:string,userName:string,product:Array<Products>)
+  constructor(userId:number,password:string,userName:string,product:Products[])
   {
     this.userId=userId;
     this.password=password;

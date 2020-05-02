@@ -16,9 +16,7 @@ export class ViewwishlistComponent implements OnInit {
   
   ngOnInit(): void 
  {
-   let userId=this.routing.snapshot.paramMap.get('userId');
-   let userIdnum=Number(userId)
-   this.service.viewproduct(userIdnum).subscribe(
+   this.service.viewproduct().subscribe(
    response =>this.handleSuccessfulResponse(response),
   );
 }
