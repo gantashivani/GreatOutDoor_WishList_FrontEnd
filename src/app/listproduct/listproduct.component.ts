@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  WishlistServiceService, Products, ProductsUser } from '../wishlist-service.service';
+import { WishlistServiceService, Products, ProductsUser } from '../wishlist-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,22 +12,35 @@ export class ListproductComponent implements OnInit{
   product:Products[];
   data:ProductsUser =new ProductsUser(0,'','',[]);
   listofproducts:Products = new Products(0,'','');
-  constructor(private service:WishlistServiceService,private routing:ActivatedRoute,private router: Router) {}
+
+  userId:any;
+  password:any;
+  userName:any;
+
+  constructor(private service:WishlistServiceService,private routing:ActivatedRoute,private router: Router){
+
+
+    let user=this.routing.snapshot.paramMap.get('userId');
+    this.userId=Number(user); /** snapshot returns string */
+    this.password=this.routing.snapshot.paramMap.get('password');
+    this.userName=this.routing.snapshot.paramMap.get('userName');
+    
+  }
 
  
  ngOnInit(): void 
  {
-   this.service.getproducts().subscribe(
-   response =>this.handleSuccessfulResponse(response),
-  );
+   this.service.getproducts().subscribe( 
+     response =>this.handleSuccessfulResponse(response),
+     );
 }
   onAdd(products:Products){
     //retriving userdata from login page 
     let user=this.routing.snapshot.paramMap.get('userId');
-    
     this.data.userId=Number(user); /** snapshot returns string */
     this.data.password=this.routing.snapshot.paramMap.get('password');
     this.data.userName=this.routing.snapshot.paramMap.get('userName');
+    
     let productid=Math.random()
     this.data.product=[
                 {productId : productid,
@@ -35,8 +48,6 @@ export class ListproductComponent implements OnInit{
                         productName:products.productName
                         }];
 
-    //this.data = new ProductsUser(userId,pass,userName,this.listofproducts);
-    console.log(this.data);
     this.service.onAddToWishList(this.data).subscribe(
       (result)=>{
         if(result!=null)
@@ -46,9 +57,13 @@ export class ListproductComponent implements OnInit{
                 }); 
       }
 
-  handleSuccessfulResponse(response)
-  {
-    this.product=response;
-  }
+      onView()
+      {
+        this.router.navigate(['/app-viewwishlist',this.userId,this.password,this.userName]);
+      }
 
+      handleSuccessfulResponse(response)
+      {
+        this.product=response;
+      }
 }

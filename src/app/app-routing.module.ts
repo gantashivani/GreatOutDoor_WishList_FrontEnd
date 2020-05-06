@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {path:'app-viewwishlist',component:ViewwishlistComponent},
+  {path:'app-viewwishlist/:userId/:password/:userName',component:ViewwishlistComponent},
   {path:'ListProduct/:userId/:password/:userName',component:ListproductComponent},
   {path:'',component:LoginComponent}
 ];

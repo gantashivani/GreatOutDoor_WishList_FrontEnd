@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
      
      details:UserDTO
+	 user:UserDTO=new UserDTO(0,'','');
 
   constructor(private service:WishlistServiceService , private router: Router) { }
   ngOnInit(): void {

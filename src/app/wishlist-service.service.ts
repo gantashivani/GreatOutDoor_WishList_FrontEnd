@@ -5,9 +5,10 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class WishlistServiceService {
-  user: any;
-
+ 
   constructor(private http:HttpClient) { }
+  
+  user: any;
   product:Products[];
   userdata:UserDTO;
 
@@ -23,16 +24,13 @@ export class WishlistServiceService {
   
   public validateUser(userId) {
     console.log(userId)
-    this.user=userId
     return this.http.get<UserDTO>("http://localhost:2001/Login/ValidateUser/"+userId,{responseType:'json'});
   }
 
-  public viewproduct() {
+  public viewproduct(user:number) {
     console.log("inservice");
-    console.log(this.user);
-    return this.http.get<UserDTO>("http://localhost:1004/WishList/ViewWishList/"+3,{responseType:'json'});
+    return this.http.get<UserDTO>("http://localhost:1004/WishList/ViewWishList/"+user,{responseType:'json'});
   }
-  
 }
 
 export class UserDTO
