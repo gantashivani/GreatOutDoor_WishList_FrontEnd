@@ -1,20 +1,32 @@
 <div class="container col-xs-2">
     <table class="table table-hover container">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th>Product Id</th>
-                <th>Product Catogery</th>
-                <th>Product Name</th>
-                
+				<th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Catogery</th>
+				<th scope="col">Prize</th>
+				<th scope="col">Dimension</th>
+				<th scope="col">Specification</th>
+                <th scope="col">Manufacture</th>
+				<th scope="col">Color</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Color</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor = "let  user of user">
-            <td> {{user.productId}} </td>
-            <td> {{user.productCatogery}} </td>
-            <td> {{user.productName}} </td>
-            </tr>
-        </tbody>
+            <tr *ngFor = "let product of user">
+            <td> {{product.colour}}</td>
+            <td> {{product.dimensions}} </td>
+			<td> {{product.manufacture}} </td>
+            <td> {{product.prize}} </td>
+			<td> {{product.productCatogery}} </td>
+            <td> {{product.productId}} </td>
+			<td> {{product.productName}} </td>
+            <td> {{product.quantity}} </td>
+			<td> {{product.retailerId}} </td>
+            <td> {{product.specifications}} </td>
+        </tbody> 
     </table>
     <h4>Shop to add more products............!!!!!!</h4>
 

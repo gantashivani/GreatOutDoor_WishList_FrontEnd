@@ -11,7 +11,6 @@ export class ListproductComponent implements OnInit{
   
   product:Products[];
   data:ProductsUser =new ProductsUser(0,'','',[]);
-  listofproducts:Products = new Products(0,'','');
 
   userId:any;
   password:any;
@@ -19,22 +18,20 @@ export class ListproductComponent implements OnInit{
 
   constructor(private service:WishlistServiceService,private routing:ActivatedRoute,private router: Router){
 
-
     let user=this.routing.snapshot.paramMap.get('userId');
     this.userId=Number(user); /** snapshot returns string */
     this.password=this.routing.snapshot.paramMap.get('password');
     this.userName=this.routing.snapshot.paramMap.get('userName');
     
   }
-
- 
+  
  ngOnInit(): void 
  {
    this.service.getproducts().subscribe( 
-     response =>this.handleSuccessfulResponse(response),
+     response =>{this.handleSuccessfulResponse(response),console.log(response)}
      );
-}
-  onAdd(products:Products){
+ }
+  onAdd(product:Products){
     //retriving userdata from login page 
     let user=this.routing.snapshot.paramMap.get('userId');
     this.data.userId=Number(user); /** snapshot returns string */
@@ -44,8 +41,15 @@ export class ListproductComponent implements OnInit{
     let productid=Math.random()
     this.data.product=[
                 {productId : productid,
-                        productCatogery:products.productCatogery,
-                        productName:products.productName
+                 productCatogery:product[1],
+                 productName:product[0],
+				 prize : product[2]		,
+				 colour :product[6],
+				 dimensions :product[3],
+				 specifications :product[4], 
+				 manufacture :product[5] ,
+				 quantity :product[7],
+				 retailerId : product[8],
                         }];
 
     this.service.onAddToWishList(this.data).subscribe(
@@ -54,13 +58,22 @@ export class ListproductComponent implements OnInit{
           alert("Added sucessfully");
         else 
           alert("Add failed");
-                }); 
-      }
-
+                }); 	
+	}
       onView()
       {
         this.router.navigate(['/app-viewwishlist',this.userId,this.password,this.userName]);
       }
+
+		onSearch()
+		{
+			this.router.navigate(['/SearchProduct']);
+		}
+		
+		onFilter()
+		{
+			this.router.navigate(['/FilterProduct']);
+		}
 
       handleSuccessfulResponse(response)
       {

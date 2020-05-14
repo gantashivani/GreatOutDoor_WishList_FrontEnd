@@ -1,32 +1,48 @@
-<div class="navbar navbar-dark bg-dark a">
-    <button type="button" class="btn  btn-primary navbar-btn" (click)=onView()> 
-                  <span class="glyphicon glyphicon-shopping-cart">ViewCart</span> 
-     </button>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="navbar a">
+    <button type="button" class="btn  btn-primary navbar-btn fas fa-shopping-cart" style="margin:5px;" (click)=onView()>ViewWishList</button>
+	 
+     <button type="button" class="btn  btn-primary navbar-btn" style="margin:5px;" (click)=onFilter()>Filter Products</button>
+     
+	 <button type="button" class="btn  btn-primary navbar-btn" style="margin:5px;" (click)=onSearch()>Search Products</button>
 </div>
 <div class="container">
     <table class="table table-hover container">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th scope="col">Product Id</th>
-                <th scope="col">Product Catogery</th>
-                <th scope="col">Product Name</th>
-                <th scope="col"></th>
+                <th scope="col">ProductName</th>
+                <th scope="col">ProductCatogery</th>
+				<th scope="col">Prize</th>
+				<th scope="col">Dimension</th>
+				<th scope="col">Specification</th>
+                <th scope="col">Manufacture</th>
+				<th scope="col">Color</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">RetailerId</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
+		
             <tr *ngFor = "let product of product">
-            <td> {{product.productId}} </td>
-            <td> {{product.productCatogery}} </td>
-            <td> {{product.productName}} </td>
+            <td> {{product[0]}} </td>
+            <td> {{product[1]}} </td>
+			<td> {{product[2]}} </td>
+            <td> {{product[3] | titlecase}} </td>
+			<td> {{product[4]}} </td>
+            <td> {{product[5]}} </td>
+			<td> {{product[6] | titlecase}} </td>
+            <td> {{product[7]}} </td>
+			<td> {{product[8]}} </td>
             <td> 
-                <button type="button" class="btn  btn-block btn-primary" (click) = onAdd(product)> 
-                  <span class="glyphicon glyphicon-heart">Add</span> 
-                </button>
-                <button type="button" class="btn  btn-block btn-primary" (click) = onView()> 
-                 <span class="glyphicon glyphicon-shopping-cart">View</span>
-                </button>
+                <button type="button" style="margin:5px;" class="btn btn-primary fas fa-heart" id="add"(click) = onAdd(product)>Add</button>                
+                <button type="button" style="margin:5px;" class="btn btn-primary fas fa-shopping-cart" (click) = onView()>View</button>
             </td>
         </tbody> 
     </table>
 </div>
+</body>

@@ -26,7 +26,7 @@ export class ViewwishlistComponent implements OnInit {
 
   ngOnInit(): void 
    { 
-   this.service.viewproduct(this.userId).subscribe( 
+   this.service.viewproduct(this.userId).subscribe(
     response =>this.handleSuccessfulResponse(response),);
   }
 

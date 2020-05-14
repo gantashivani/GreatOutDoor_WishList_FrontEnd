@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "WishListManagementAngular"
+    }
+  },
+  "defaultProject": "WishListManagementAngular",
+  "cli": {
+    "analytics": "a9904a5c-9dbd-429e-bd12-4fa20ecde09c"
+  }
 }
