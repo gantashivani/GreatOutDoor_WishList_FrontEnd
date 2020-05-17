@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,10 @@ export class WishlistServiceService {
     return this.http.post<ProductsUser>("http://localhost:2021/AddToWishList/Add",data,{responseType:'json'});
   }
   
-  public validateUser(userId) {
-    console.log(userId)
-    return this.http.get("http://localhost:2001/Login/ValidateUser/"+userId,{responseType:'text'});
+  public validateUser(userId,password) {
+    console.log(userId+" "+password)
+    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
+    return this.http.get("http://localhost:2001/Login/ValidateUser/"+userId+"/"+password,{headers, responseType: 'text'});
   }
 
   public viewproduct(user:number) {

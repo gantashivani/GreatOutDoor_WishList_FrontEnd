@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
      
+	 result:any;
      details:UserDTO=new UserDTO(0,'','');
 	 user:UserDTO=new UserDTO(0,'','');
    
@@ -19,15 +20,15 @@ export class LoginComponent implements OnInit {
 	}
 
   onSubmit(user:UserDTO):void{
-    console.log(user)
-    this.service.validateUser(user.userId).subscribe(
+    console.log(user.password)
+    this.service.validateUser(user.userId,user.password).subscribe(
 	(data)=>{
-	console.log(data);
-	if(data == "Login Sucessfull"){
+	if(data != "Login Sucessfull"){
+	alert("Invalid userId/userName/password");}
+	else {
 		alert(data);
-		this.router.navigate(['/ListProduct',user.userId,user.password,user.userName]);}
-	else 
-		alert("Invalid userId/userName/password");
+		this.router.navigate(['/ListProduct',user.userId,user.password,user.userName]);
+	}	
 	}
 	);}
 }

@@ -3,15 +3,18 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-<div class="navbar a">
-    <button type="button" class="btn  btn-primary navbar-btn fas fa-shopping-cart" style="margin:5px;" (click)=onView()>ViewWishList</button>
-	 
-     <button type="button" class="btn  btn-primary navbar-btn" style="margin:5px;" (click)=onFilter()>Filter Products</button>
-     
-	 <button type="button" class="btn  btn-primary navbar-btn" style="margin:5px;" (click)=onSearch()>Search Products</button>
-</div>
 <div class="container">
-    <table class="table table-hover container">
+<div class="navbar a">
+    <button type="button" class="btn  btn-primary navbar-btn fas fa-shopping-cart " style="margin:5px;" (click)=onView()> ViewWishList</button>
+	 
+     <button type="button" class="btn  btn-primary navbar-btn fas fa-filter btn-margin-left btn-margin-right" style="margin:5px;" (click)=onFilter()> Filter Products</button>
+     
+     <button type="button" class="btn  btn-primary navbar-btn fas fa-search btn-margin-left btn-margin-right" style="margin:5px;" (click)=onSearch()> Search Products</button>
+
+     <button type="button" class="btn  btn-primary navbar-btn  btn-margin-left btn-margin-right" style="margin:5px;" (click)=onLogOut()>LogOut</button>
+</div>
+
+    <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">ProductName</th>
@@ -39,7 +42,7 @@
             <td> {{product[7]}} </td>
 			<td> {{product[8]}} </td>
             <td> 
-                <button type="button" style="margin:5px;" class="btn btn-primary fas fa-heart" id="add"(click) = onAdd(product)>Add</button>                
+                <button type="button" style="margin:5px;" class="btn btn-primary fas fa-heart" id="add"(click) = onAdd(product)> Add</button>                
                 <button type="button" style="margin:5px;" class="btn btn-primary fas fa-shopping-cart" (click) = onView()>View</button>
             </td>
         </tbody> 

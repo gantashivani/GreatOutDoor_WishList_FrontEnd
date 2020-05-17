@@ -73,8 +73,11 @@ export class ListproductComponent implements OnInit{
 		onFilter()
 		{
 			this.router.navigate(['/FilterProduct']);
-		}
-
+    }
+    onLogOut()
+    {
+      this.router.navigate(['/'])
+    }
       handleSuccessfulResponse(response)
       {
         this.product=response;

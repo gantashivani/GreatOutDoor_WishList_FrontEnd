@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './viewwishlist.component.html',
   styleUrls: ['./viewwishlist.component.css']
 })
+
 export class ViewwishlistComponent implements OnInit {
 
   userId:any;
